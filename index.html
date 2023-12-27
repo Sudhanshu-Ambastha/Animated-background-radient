@@ -23,7 +23,7 @@
         [62, 35, 255],
         [60, 255, 60],
         [255, 35, 98],
-        [47, 175, 238],
+        [47, 175, 230],
         [255, 0, 255],
         [255, 128, 0]);
 
@@ -32,7 +32,7 @@
       var gradientSpeed = 0.002;
       
       function updateGradient() {
-        if ($) return;
+        if ($ == undefined) return;
 
         var c0_0 = colors[colorIndices[0]];
         var c0_1 = colors[colorIndices[1]];
