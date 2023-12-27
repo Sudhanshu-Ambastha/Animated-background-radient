@@ -1,7 +1,5 @@
 # Animated Background Gradient
 
-![Demo](https://github.com/Sudhanshu-Ambastha/Animated-background-radient/assets/135802131/1711a807-4f97-4e68-b729-580b6aee61d8)
-
 ## Description
 
 This repository contains an HTML file that creates an animated background gradient. The gradient smoothly transitions between different colors, creating an eye-catching and dynamic visual effect.
