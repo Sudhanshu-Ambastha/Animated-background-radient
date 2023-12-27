@@ -10,7 +10,7 @@
     }
     #gradient {
         width: 100%;
-        height: 800px; /* Added 'px' unit */
+        height: 800px;
         padding: 0px;
         margin: 0px;
     }
@@ -19,47 +19,39 @@
 <body>
     <div id="gradient"></div>
     <script>
-      var colors = new Array(
-        [62, 35, 255],
-        [60, 255, 60],
-        [255, 35, 98],
-        [47, 175, 230],
-        [255, 0, 255],
-        [255, 128, 0]);
+      var colors = [
+        [62, 35, 255],  // Dark Blue
+        [255, 0, 255],  // Pink
+        [60, 255, 60],  // Green
+        [47, 175, 238]  // Ocean Blue
+      ];
 
       var step = 0;
-      var colorIndices = [0, 1, 2, 3];
       var gradientSpeed = 0.002;
-      
+
       function updateGradient() {
-        if ($ == undefined) return;
+        var colorIndices = [
+          Math.floor(step * colors.length),
+          Math.floor((step + 0.5) * colors.length) % colors.length
+        ];
 
-        var c0_0 = colors[colorIndices[0]];
-        var c0_1 = colors[colorIndices[1]];
-        var c1_0 = colors[colorIndices[2]]; /* Corrected variable name */
-        var c1_1 = colors[colorIndices[3]]; /* Corrected variable name */
+        var c0 = colors[colorIndices[0]];
+        var c1 = colors[colorIndices[1]];
 
-        var istep = 1 - step;
-        var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
-        var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
-        var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
-        var color1 = "rgb(" + r1 + "," + g1 + "," + b1 + ")";
-        var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]); /* Corrected variable name */
-        var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]); /* Corrected variable name */
-        var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]); /* Corrected variable name */
-        var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+        var r = Math.round((1 - step) * c0[0] + step * c1[0]);
+        var g = Math.round((1 - step) * c0[1] + step * c1[1]);
+        var b = Math.round((1 - step) * c0[2] + step * c1[2]);
+        
+        var color = "rgb(" + r + "," + g + "," + b + ")";
 
         $('#gradient').css({
-          background: "-webkit-gradient(linear, left top, right top, from (" + color1 + "), to(" + color2 + "))",
-          background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+          background: "-webkit-gradient(linear, left top, right top, from(" + color + "), to(" + color + "))",
+          background: "-moz-linear-gradient(left, " + color + " 0%, " + color + " 100%)"
         });
+
         step += gradientSpeed;
         if (step >= 1) {
-          step %= 1;
-          colorIndices[0] = colorIndices[1];
-          colorIndices[2] = colorIndices[3];
-          colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-          colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+          step = 0;
         }
       }
 
