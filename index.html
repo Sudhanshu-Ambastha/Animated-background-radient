@@ -45,8 +45,7 @@
         var color = "rgb(" + r + "," + g + "," + b + ")";
 
         $('#gradient').css({
-         background: "-webkit-gradient(linear, left top, right top, from(" + color + "), to(" + color + "))",
-         background: "-moz-linear-gradient(left, " + color + " 0%, " + color + " 100%)",
+         background: "linear-gradient(to right, " + color + ", " + color + ")",
          backgroundColor: color // Add this line for a fallback color
         });
 
